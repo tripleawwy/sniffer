@@ -94,7 +94,7 @@ namespace ConsoleApp2
 
             int arsch = 42;
 
-            Console.WriteLine("Arsssch = " + arsch);
+            Console.WriteLine("Arssschs = " + arsch);
             Console.WriteLine("Arsch = " + arsch++);
             Console.WriteLine("Arsch = " + ++arsch);
             Console.Read();
