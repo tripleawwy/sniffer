@@ -92,8 +92,11 @@ namespace ConsoleApp2
                 if (i % 8 == 0) Console.WriteLine();
             }
 
+            int arsch = 42;
 
-
+            Console.WriteLine("Arsch = " + arsch);
+            Console.WriteLine("Arsch = " + arsch++);
+            Console.WriteLine("Arsch = " + ++arsch);
             Console.Read();
 
             //FileStream achDuMeineGuete = new FileStream("test2.txt.", FileMode.Create, FileAccess.Write);
