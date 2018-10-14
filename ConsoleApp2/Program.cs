@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Sockets;
+using System.Net;
+using log4net;
+using System.Collections;
+
 
 namespace ConsoleApp2
 {
@@ -45,62 +50,65 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            //FileStream neuerDatenstrom = new FileStream("test1.txt", FileMode.Create, FileAccess.Write);
-            //BinaryWriter writer = new BinaryWriter(neuerDatenstrom);
-            //writer.Write('b');
-            //writer.Write('j');
-            //writer.Write('o');
-            //writer.Write('e');
-            //writer.Write('r');
-            //writer.Write('n');
-            //writer.Close();
-            //writer = null;
-            //neuerDatenstrom = null;
 
-            FileStream neuerDatenstrom = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
-            BinaryReader reader = new BinaryReader(neuerDatenstrom);
-            char[] all = reader.ReadChars((int)neuerDatenstrom.Length);
-            reader.Close();
-            Console.WriteLine(all);
+            FileStream neuerDatenstrom = new FileStream("test.txt", FileMode.Create, FileAccess.Write);
+            //neuerDatenstrom.WriteByte((byte)42);
+            neuerDatenstrom.WriteByte((byte)1);
+            BinaryWriter writer = new BinaryWriter(neuerDatenstrom);
+            //writer.Write(new byte[] { 66, 106, 111, 101, 114, 110 });
+            writer.Close();
+            writer = null;
+            neuerDatenstrom = null;
+
+
+            //FileStream nochnNeuerDatenstrom = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
+            //BinaryReader reader = new BinaryReader(nochnNeuerDatenstrom);
+            //byte[] all = reader.ReadBytes((int)nochnNeuerDatenstrom.Length);
+            //for (int i = 0; i < all.Length; i++)
+            //{
+            //    Console.WriteLine(all[i]);
+            //}
+            //reader.Close();
             //Console.Read();
 
 
             neuerDatenstrom = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
-            bool[] ich = new bool[neuerDatenstrom.Length * 8];
-            BitReader aktBit = new BitReader(neuerDatenstrom);
-
-            bool? hilf = false;
-
-            for (int i = 0; hilf != null & i < ich.Length; i++)
-            {
-                hilf = aktBit.ReadBit(true);
-
-                if (hilf == true) ich[i] = (bool)hilf;
-                if (hilf == false) ich[i] = (bool)hilf;
-            }
-
-            for (int i = 1; i <= ich.Length; i++)
-            {
-                if (ich[i - 1])
-                {
-                    Console.Write("1");
-                }
-                else
-                {
-                    Console.Write("0");
-                }
-                if (i % 8 == 0) Console.WriteLine();
-            }
-
-            int arsch = 42;
-
-            Console.WriteLine("Arssssschs = " + arsch);
-            Console.WriteLine("Arsch = " + arsch++);
-            Console.WriteLine("Arsch = " + ++arsch);
+            BinaryReader reader = new BinaryReader(neuerDatenstrom);
+            byte[] all = reader.ReadBytes((int)neuerDatenstrom.Length);
+            BitArray bitall = new BitArray(all);
+            reader.Close();
+            Console.WriteLine(bitall);
             Console.Read();
 
-            //FileStream achDuMeineGuete = new FileStream("test2.txt.", FileMode.Create, FileAccess.Write);
-            //BinaryWriter writer = new BinaryWriter(achDuMeineGuete);
+
+            //neuerDatenstrom = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
+            //bool[] ich = new bool[neuerDatenstrom.Length * 8];
+            //BitReader aktBit = new BitReader(neuerDatenstrom);
+
+            //bool? hilf = false;
+
+            //for (int i = 0; hilf != null & i < ich.Length; i++)
+            //{
+            //    hilf = aktBit.ReadBit(true);
+
+            //    if (hilf == true) ich[i] = (bool)hilf;
+            //    if (hilf == false) ich[i] = (bool)hilf;
+            //}
+
+            //for (int i = 1; i <= ich.Length; i++)
+            //{
+            //    if (ich[i - 1])
+            //    {
+            //        Console.Write("1");
+            //    }
+            //    else
+            //    {
+            //        Console.Write("0");
+            //    }
+            //    if (i % 8 == 0) Console.WriteLine();
+            //}
+
+            //Console.Read();
 
 
         }
